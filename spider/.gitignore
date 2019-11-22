@@ -1,4 +1,6 @@
 node_modules
 log
 package-lock.json
-html
+html/files
+html/media
+.DS_Store
