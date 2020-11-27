@@ -5,8 +5,9 @@ var imgCrawler = new Crawler({
     encoding: null,
     jQuery: null,
     callback: function(error, res, done){
+        tid = res.options.tid;
         if(error){
-            console.log(error);
+            console.log(`[!!!] ${tid} error`);
         }else{
             var fn = res.options.filename;
             var writeStream;
@@ -20,7 +21,7 @@ var imgCrawler = new Crawler({
                 fs.writeFile('log', "[-] Crawl image error: "+error+"\n", {flag:'a'}, ()=>{});
             });
             writeStream.on('finish', () => {
-                //console.log(`[+] Crawl image [${fn}] success`);
+                console.log(`[+] ${tid}\tCrawl image [${fn}] success`);
             });
             writeStream.write(res.body);
             writeStream.end();
